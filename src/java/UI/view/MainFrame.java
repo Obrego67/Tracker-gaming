@@ -111,18 +111,22 @@ public class MainFrame extends JFrame {
         boton_minimizar.addActionListener(listener_menu);
         boton_maximizar.addActionListener(listener_menu);
 
+        //cambias el color del fondo al de la barra superior
         boton_cerrar.setBackground(color_barra_superior);
         boton_minimizar.setBackground(color_barra_superior);
         boton_maximizar.setBackground(color_barra_superior);
 
+        //quitas el borde del boton
         boton_cerrar.setBorderPainted(false);
         boton_minimizar.setBorderPainted(false);
         boton_maximizar.setBorderPainted(false);
 
+        //añadir iconos a los botones
         boton_cerrar.setIcon(new ImageIcon("recursos/icons/close.png"));
         boton_minimizar.setIcon(new ImageIcon("recursos/icons/minimize.png"));
         boton_maximizar.setIcon(new ImageIcon("recursos/icons/maximize.png"));
 
+        //tamaño
         boton_cerrar.setPreferredSize(tamaño_boton_menu);
         boton_minimizar.setPreferredSize(tamaño_boton_menu);
         boton_maximizar.setPreferredSize(tamaño_boton_menu);
