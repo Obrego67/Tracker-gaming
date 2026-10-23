@@ -2,46 +2,40 @@ package UI.view;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Container;
 
-import UI.listeners.*;
+import UI.listeners.listener_botones_menu;
 
 public class MainFrame extends JFrame {
     /* ----- SECCION DE VARIABLES GLOBAS REUTILIZADAS ----- */
-    private static final Color background_color = new Color(55, 55, 56);
-    private static final Color color_barra_superior = new Color(38, 38, 38);
-    // guardamos la dimensiones de la pantalal donde se ejecuta el codigo
-    Dimension tamaño_pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-    Dimension tamaño_barra_superior = new Dimension(tamaño_pantalla.width, 50);
-    Dimension tamaño_boton_menu = new Dimension(48, 50);
+    private static final Color BACKGROUND_COLOR = new Color(55, 55, 56);
+    private static final Color TOP_BAR_COLOR = new Color(38, 38, 38);
+    private static final Dimension TOP_BAR_SIZE = new Dimension(0, 50);
+    private static final Dimension MENU_BUTTON_SIZE = new Dimension(48, 50);
     // variable que nos sirve para acceder al contenido de la ventana nos hcae falta
     // para modificar lso elementos
-    Container ventana_de_contenido = getContentPane();
+    private final Container ventana_de_contenido = getContentPane();
 
     /*----- Elementos de la ventana ----- */
-    JButton boton_cerrar;
-    JButton boton_minimizar;
-    JButton boton_maximizar;
+    private JButton boton_cerrar;
+    private JButton boton_minimizar;
+    private JButton boton_maximizar;
 
-    JPanel barra_superior; // delimita la zona de la barra superior (borderlayout)
+    private JPanel barra_superior; // delimita la zona de la barra superior (borderlayout)
     // dividiremos la barra superior en 3, al ser un borderlayout la superior, se
     // repartiran el tamaño
     // seran flowlayout
-    JPanel barra_superior_centro;
-    JPanel barra_superior_izquierda;
-    JPanel barra_superior_derecha;
+    private JPanel barra_superior_centro;
+    private JPanel barra_superior_izquierda;
+    private JPanel barra_superior_derecha;
 
     /* ----- CONSTRUCTOR VENTANA ----- */
     public MainFrame() {
@@ -50,18 +44,17 @@ public class MainFrame extends JFrame {
         inicializarBotonesMenu();
     }
 
-    public void inicializacion() {
+    private void inicializacion() {
         setTitle("Tracker Gaming v1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true); // quita la barra de windows
         setSize(500, 500);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        ventana_de_contenido.setBackground(background_color);
+        ventana_de_contenido.setBackground(BACKGROUND_COLOR);
         ventana_de_contenido.setLayout(new BorderLayout());
     }
-
-    public void inicializarBarraSuperior() {
+    private void inicializarBarraSuperior() {
         barra_superior = new JPanel();
         barra_superior.setLayout(new BorderLayout());
 
@@ -87,15 +80,14 @@ public class MainFrame extends JFrame {
         barra_superior_derecha.setOpaque(false);
 
         // le indica al layout el tamaño que desea tener el objeto
-        barra_superior.setPreferredSize(tamaño_barra_superior);
+        barra_superior.setPreferredSize(TOP_BAR_SIZE);
         // barra_superior.setMaximumSize(tamaño_barra_superior);
 
-        barra_superior.setBackground(color_barra_superior);
+        barra_superior.setBackground(TOP_BAR_COLOR);
         ventana_de_contenido.add(barra_superior, BorderLayout.NORTH);
 
     }
-
-    public void inicializarBotonesMenu() {
+    private void inicializarBotonesMenu() {
         boton_cerrar = new JButton();
         boton_minimizar = new JButton();
         boton_maximizar = new JButton();
@@ -112,9 +104,9 @@ public class MainFrame extends JFrame {
         boton_maximizar.addActionListener(listener_menu);
 
         //cambias el color del fondo al de la barra superior
-        boton_cerrar.setBackground(color_barra_superior);
-        boton_minimizar.setBackground(color_barra_superior);
-        boton_maximizar.setBackground(color_barra_superior);
+        boton_cerrar.setBackground(TOP_BAR_COLOR);
+        boton_minimizar.setBackground(TOP_BAR_COLOR);
+        boton_maximizar.setBackground(TOP_BAR_COLOR);
 
         //quitas el borde del boton
         boton_cerrar.setBorderPainted(false);
@@ -127,9 +119,9 @@ public class MainFrame extends JFrame {
         boton_maximizar.setIcon(new ImageIcon("recursos/icons/maximize.png"));
 
         //tamaño
-        boton_cerrar.setPreferredSize(tamaño_boton_menu);
-        boton_minimizar.setPreferredSize(tamaño_boton_menu);
-        boton_maximizar.setPreferredSize(tamaño_boton_menu);
+        boton_cerrar.setPreferredSize(MENU_BUTTON_SIZE);
+        boton_minimizar.setPreferredSize(MENU_BUTTON_SIZE);
+        boton_maximizar.setPreferredSize(MENU_BUTTON_SIZE);
 
         barra_superior_derecha.add(boton_minimizar);
         barra_superior_derecha.add(boton_maximizar);
@@ -137,6 +129,14 @@ public class MainFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        new MainFrame().setVisible(true);
+        //esto sirve para ejecutar la interfaz en un thread dedicado que tiene swing
+        //asi evitas possibles problemas visuales i glitches
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MainFrame ventana = new MainFrame();
+                ventana.setVisible(true);
+            }
+        });
     }
 }
