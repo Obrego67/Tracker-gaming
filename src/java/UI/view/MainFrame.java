@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
     // variable que nos sirve para acceder al contenido de la ventana nos hcae falta
     // para modificar lso elementos
     private final Container ventana_de_contenido = getContentPane();
-    
+
     /*----- Elementos de la ventana ----- */
     private JButton boton_cerrar;
     private JButton boton_minimizar;
