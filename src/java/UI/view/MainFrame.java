@@ -23,16 +23,17 @@ public class MainFrame extends JFrame {
     // variable que nos sirve para acceder al contenido de la ventana nos hcae falta
     // para modificar lso elementos
     private final Container ventana_de_contenido = getContentPane();
-
+    
     /*----- Elementos de la ventana ----- */
     private JButton boton_cerrar;
     private JButton boton_minimizar;
     private JButton boton_maximizar;
 
     private JPanel barra_superior; // delimita la zona de la barra superior (borderlayout)
-    // dividiremos la barra superior en 3, al ser un borderlayout la superior, se
-    // repartiran el tamaño
-    // seran flowlayout
+    /**
+     * BorderLayout divide la barra superior en zonas izquierda, centro y derecha.
+     * Cada zona usa FlowLayout para ordenar sus componentes en fila.
+     */
     private JPanel barra_superior_centro;
     private JPanel barra_superior_izquierda;
     private JPanel barra_superior_derecha;
@@ -44,6 +45,7 @@ public class MainFrame extends JFrame {
         inicializarBotonesMenu();
     }
 
+    /* ----- FUNCIONES DEDICADAS A LA INICIALIZACION DE ELEMENTOS  ----- */
     private void inicializacion() {
         setTitle("Tracker Gaming v1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
