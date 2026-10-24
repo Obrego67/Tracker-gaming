@@ -1,6 +1,5 @@
 package UI.view;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -15,9 +14,13 @@ public class MainFrame extends JFrame {
     // para modificar lso elementos
     private final Container ventana_de_contenido = getContentPane();
 
+    /* ----- ELEMENTOS DE LA VENTANA  ----- */
+    BarraSuperior barra_superior;
+
     /* ----- CONSTRUCTOR VENTANA ----- */
     public MainFrame() {
         inicializacion();
+        añadirBarraSuperior();
     }
 
     /* ----- FUNCIONES DEDICADAS A LA INICIALIZACION DE ELEMENTOS  ----- */
@@ -31,7 +34,11 @@ public class MainFrame extends JFrame {
         ventana_de_contenido.setBackground(BACKGROUND_COLOR);
         ventana_de_contenido.setLayout(new BorderLayout());
     }
-
+    private void añadirBarraSuperior(){
+        barra_superior = new BarraSuperior();
+        barra_superior.añadirBotonesMenu(this);
+        ventana_de_contenido.add(barra_superior, BorderLayout.NORTH);
+    }
 
     public static void main(String[] args) {
         //esto sirve para ejecutar la interfaz en un thread dedicado que tiene swing
