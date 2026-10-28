@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-public class listener_botones_menu implements ActionListener {
+public class ListenerBotonesMenu implements ActionListener {
     MainFrame ventana;
-    public listener_botones_menu(MainFrame ventana) {
+    public ListenerBotonesMenu(MainFrame ventana) {
         this.ventana = ventana;
     }
 

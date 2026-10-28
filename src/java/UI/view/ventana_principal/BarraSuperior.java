@@ -1,6 +1,8 @@
-package UI.view;
+package UI.view.ventana_principal;
 
-import UI.listeners.listener_botones_menu;
+import UI.view.barra_superior.BotonPerfil;
+import UI.view.barra_superior.BotonesMenu;
+import UI.listeners.c_listnersBotons;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,7 +21,10 @@ public class BarraSuperior extends JPanel {
     private JPanel barra_superior_izquierda;
     private JPanel barra_superior_derecha;
 
-    public BarraSuperior() {
+    private BotonesMenu botonesMenu;
+    private BotonPerfil botonPerfil;
+
+    public BarraSuperior(c_listnersBotons gestor) {
         // Configurem aquest propi JPanel
         setLayout(new BorderLayout());
         setPreferredSize(TOP_BAR_SIZE);
@@ -36,6 +41,12 @@ public class BarraSuperior extends JPanel {
         add(barra_superior_izquierda, BorderLayout.WEST);
         add(barra_superior_centro, BorderLayout.CENTER);
         add(barra_superior_derecha, BorderLayout.EAST);
+
+        añadirBotonesMenu();
+        gestor.añadirListenerMenu(botonesMenu);
+
+        añadirBotonPerfil();
+        gestor.añadirListenerBoton(botonPerfil);
     }
 
     /*
@@ -44,18 +55,20 @@ public class BarraSuperior extends JPanel {
      * el menu de la ventana siempre estara situado a la derecha+
      * Necessita el MainFrame ya para crear el listener de los botones
      */
-    public void añadirBotonesMenu(MainFrame mainFrame) {
-        listener_botones_menu listener = new listener_botones_menu(mainFrame);
-
-        BotonesMenu botonesMenu = new BotonesMenu(
+    private void añadirBotonesMenu() {
+        botonesMenu = new BotonesMenu(
                 "minimizar", "maximizar", "cerrar",
                 "recursos/icons/minimize.png",
                 "recursos/icons/maximize.png",
-                "recursos/icons/close.png",
-                listener);
+                "recursos/icons/close.png");
         barra_superior_derecha.add(botonesMenu.getButton_1());
         barra_superior_derecha.add(botonesMenu.getButton_2());
         barra_superior_derecha.add(botonesMenu.getButton_3());
+    }
+
+    private void añadirBotonPerfil() {
+        botonPerfil = new BotonPerfil();
+        barra_superior_izquierda.add(botonPerfil);
     }
 
     // TODO implementar mas metodos para añadir-los en las otras partes

@@ -1,5 +1,9 @@
 package UI.view;
 
+import UI.listeners.c_listnersBotons;
+import UI.view.ventana_principal.BarraSuperior;
+import UI.view.ventana_principal.Perfil;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -10,20 +14,24 @@ import javax.swing.SwingUtilities;
 public class MainFrame extends JFrame {
     /* ----- SECCION DE VARIABLES GLOBAS REUTILIZADAS ----- */
     private static final Color BACKGROUND_COLOR = new Color(55, 55, 56);
-    // variable que nos sirve para acceder al contenido de la ventana nos hcae falta
-    // para modificar lso elementos
     private final Container ventana_de_contenido = getContentPane();
 
-    /* ----- ELEMENTOS DE LA VENTANA  ----- */
-    BarraSuperior barra_superior;
+    /* ----- ELEMENTOS DE LA VENTANA ----- */
+    BarraSuperior barraSuperior;
+    Perfil perfilUsuari;
+    c_listnersBotons gestorBotones;
 
     /* ----- CONSTRUCTOR VENTANA ----- */
     public MainFrame() {
+        // creas el gestor de botones par aañadir listeners
+        gestorBotones = new c_listnersBotons(this);
+
         inicializacion();
         añadirBarraSuperior();
+        añadirPerfilUsuari();
     }
 
-    /* ----- FUNCIONES DEDICADAS A LA INICIALIZACION DE ELEMENTOS  ----- */
+    /* ----- FUNCIONES DEDICADAS A LA INICIALIZACION DE ELEMENTOS ----- */
     private void inicializacion() {
         setTitle("Tracker Gaming v1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,15 +42,19 @@ public class MainFrame extends JFrame {
         ventana_de_contenido.setBackground(BACKGROUND_COLOR);
         ventana_de_contenido.setLayout(new BorderLayout());
     }
-    private void añadirBarraSuperior(){
-        barra_superior = new BarraSuperior();
-        barra_superior.añadirBotonesMenu(this);
-        ventana_de_contenido.add(barra_superior, BorderLayout.NORTH);
+
+    private void añadirBarraSuperior() {
+        barraSuperior = new BarraSuperior(gestorBotones);
+        ventana_de_contenido.add(barraSuperior, BorderLayout.NORTH);
+    }
+
+    private void añadirPerfilUsuari() {
+        perfilUsuari = new Perfil(this);
     }
 
     public static void main(String[] args) {
-        //esto sirve para ejecutar la interfaz en un thread dedicado que tiene swing
-        //asi evitas possibles problemas visuales i glitches
+        // esto sirve para ejecutar la interfaz en un thread dedicado que tiene swing
+        // asi evitas possibles problemas visuales i glitches
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -50,5 +62,6 @@ public class MainFrame extends JFrame {
                 ventana.setVisible(true);
             }
         });
+
     }
 }

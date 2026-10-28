@@ -1,6 +1,6 @@
-package UI.view;
+package UI.view.barra_superior;
 
-import UI.listeners.listener_botones_menu;
+import UI.listeners.ListenerBotonesMenu;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 public class BotonesMenu {
 
-    private static final Dimension MENU_BUTTON_SIZE = new Dimension(48, 50);
+    private static final Dimension MENU_BUTTON_SIZE = new Dimension(50, 50);
     private JButton boton_1;
     private JButton boton_2;
     private JButton boton_3;
@@ -33,19 +33,21 @@ public class BotonesMenu {
         boton_1.setBackground(fondo);
         boton_2.setBackground(fondo);
         boton_3.setBackground(fondo);
+
+        boton_1.setFocusPainted(true);
+        boton_2.setFocusPainted(true);
+        boton_3.setFocusPainted(true);
     }
 
     // Constructor completo con parámetros
     public BotonesMenu(String c1, String c2, String c3,
-            String img1, String img2, String img3,
-            listener_botones_menu listener) {
+            String img1, String img2, String img3) {
         // Reutilizamos el constructor por defecto para crear los botones y estilos base
         this();
 
         // Asignamos comandos, iconos y listener pasados por parámetro
         setCommand(c1, c2, c3);
         setIcon(img1, img2, img3);
-        setListener(listener);
     }
 
     // Setters
@@ -67,7 +69,7 @@ public class BotonesMenu {
         boton_3.setIcon(new ImageIcon(img3));
     }
 
-    public void setListener(listener_botones_menu l) {
+    public void setListener(ListenerBotonesMenu l) {
         boton_1.addActionListener(l);
         boton_2.addActionListener(l);
         boton_3.addActionListener(l);
