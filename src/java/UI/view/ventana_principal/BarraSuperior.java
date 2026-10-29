@@ -42,33 +42,27 @@ public class BarraSuperior extends JPanel {
         add(barra_superior_centro, BorderLayout.CENTER);
         add(barra_superior_derecha, BorderLayout.EAST);
 
-        añadirBotonesMenu();
+        botonesMenu = crearBotonesMenu();
+        barra_superior_derecha.add(botonesMenu.getButton_1());
+        barra_superior_derecha.add(botonesMenu.getButton_2());
+        barra_superior_derecha.add(botonesMenu.getButton_3());
         gestor.añadirListenerMenu(botonesMenu);
 
-        añadirBotonPerfil();
+        botonPerfil = crearBotonPerfil();
+        barra_superior_izquierda.add(botonPerfil);
         gestor.añadirListenerPerfil(botonPerfil);
     }
 
-    /*
-     * Funcion encargada de añadir los botonesMenu a la barra superior/derecha ya
-     * que
-     * el menu de la ventana siempre estara situado a la derecha+
-     * Necessita el MainFrame ya para crear el listener de los botones
-     */
-    private void añadirBotonesMenu() {
-        botonesMenu = new BotonesMenu(
+    private BotonesMenu crearBotonesMenu() {
+        return new BotonesMenu(
                 "minimizar", "maximizar", "cerrar",
                 "recursos/icons/minimize.png",
                 "recursos/icons/maximize.png",
                 "recursos/icons/close.png");
-        barra_superior_derecha.add(botonesMenu.getButton_1());
-        barra_superior_derecha.add(botonesMenu.getButton_2());
-        barra_superior_derecha.add(botonesMenu.getButton_3());
     }
 
-    private void añadirBotonPerfil() {
-        botonPerfil = new BotonPerfil();
-        barra_superior_izquierda.add(botonPerfil);
+    private BotonPerfil crearBotonPerfil() {
+        return new BotonPerfil();
     }
 
     // TODO implementar mas metodos para añadir-los en las otras partes

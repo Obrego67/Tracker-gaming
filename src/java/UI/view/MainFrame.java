@@ -27,8 +27,9 @@ public class MainFrame extends JFrame {
         gestorBotones = new c_listnersBotons(this);
 
         inicializacion();
-        añadirBarraSuperior();
-        añadirPerfilUsuari();
+        barraSuperior = crearBarraSuperior();
+        ventana_de_contenido.add(barraSuperior, BorderLayout.NORTH);
+        perfilUsuari = crearPerfilUsuari();
     }
 
     /* ----- FUNCIONES DEDICADAS A LA INICIALIZACION DE ELEMENTOS ----- */
@@ -43,13 +44,12 @@ public class MainFrame extends JFrame {
         ventana_de_contenido.setLayout(new BorderLayout());
     }
 
-    private void añadirBarraSuperior() {
-        barraSuperior = new BarraSuperior(gestorBotones);
-        ventana_de_contenido.add(barraSuperior, BorderLayout.NORTH);
+    private BarraSuperior crearBarraSuperior() {
+        return new BarraSuperior(gestorBotones);
     }
 
-    private void añadirPerfilUsuari() {
-        perfilUsuari = new Perfil(this);
+    private Perfil crearPerfilUsuari() {
+        return new Perfil(this);
     }
 
     public static void main(String[] args) {
