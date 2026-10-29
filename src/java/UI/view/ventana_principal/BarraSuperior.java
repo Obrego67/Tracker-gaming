@@ -46,7 +46,7 @@ public class BarraSuperior extends JPanel {
         gestor.añadirListenerMenu(botonesMenu);
 
         añadirBotonPerfil();
-        gestor.añadirListenerBoton(botonPerfil);
+        gestor.añadirListenerPerfil(botonPerfil);
     }
 
     /*

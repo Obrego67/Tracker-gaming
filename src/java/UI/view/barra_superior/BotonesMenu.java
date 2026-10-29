@@ -44,7 +44,6 @@ public class BotonesMenu {
             String img1, String img2, String img3) {
         // Reutilizamos el constructor por defecto para crear los botones y estilos base
         this();
-
         // Asignamos comandos, iconos y listener pasados por parámetro
         setCommand(c1, c2, c3);
         setIcon(img1, img2, img3);

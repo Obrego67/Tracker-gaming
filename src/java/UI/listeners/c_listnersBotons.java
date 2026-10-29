@@ -3,6 +3,7 @@ package UI.listeners;
 import UI.components.Boton;
 import UI.view.MainFrame;
 import UI.view.barra_superior.BotonesMenu;
+import UI.view.ventana_principal.Perfil;
 
 public final class c_listnersBotons {
 
@@ -18,12 +19,11 @@ public final class c_listnersBotons {
         b.setListener(listener);
     }
 
-    public void añadirListenerBoton(Boton b){
+    public void añadirListenerPerfil(Boton boton) {
+        boton.addActionListener(new ListenerPerfil(MainFrame));
+    }
 
-        switch(b.getTipo()){
-            case PERFIL:
-                b.addActionListener(new ListenerPerfil(MainFrame));
-                break;
-        }
+    public void añadirListenerCerrarPerfil(Boton boton, Perfil perfil) {
+        boton.addActionListener(new ListenerBotonCerrarPerfil(perfil));
     }
 }
