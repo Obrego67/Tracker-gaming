@@ -3,6 +3,7 @@ package UI.view;
 import UI.listeners.c_listnersBotons;
 import UI.view.ventana_principal.BarraSuperior;
 import UI.view.ventana_principal.Perfil;
+import UI.view.ventana_principal.BarraLateral;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,6 +19,7 @@ public class MainFrame extends JFrame {
 
     /* ----- ELEMENTOS DE LA VENTANA ----- */
     BarraSuperior barraSuperior;
+    BarraLateral barraLateral;
     Perfil perfilUsuari;
     c_listnersBotons gestorBotones;
 
@@ -27,8 +29,13 @@ public class MainFrame extends JFrame {
         gestorBotones = new c_listnersBotons(this);
 
         inicializacion();
+
         barraSuperior = crearBarraSuperior();
         ventana_de_contenido.add(barraSuperior, BorderLayout.NORTH);
+
+        barraLateral = crearBarraLateral();
+        ventana_de_contenido.add(barraLateral, BorderLayout.WEST);
+
         perfilUsuari = crearPerfilUsuari();
     }
 
@@ -50,6 +57,10 @@ public class MainFrame extends JFrame {
 
     private Perfil crearPerfilUsuari() {
         return new Perfil(this);
+    }
+
+    private BarraLateral crearBarraLateral(){
+        return new BarraLateral(gestorBotones);
     }
 
     public static void main(String[] args) {
