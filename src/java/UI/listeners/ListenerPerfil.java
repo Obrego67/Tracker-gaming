@@ -1,11 +1,10 @@
 package UI.listeners;
 
 import UI.view.MainFrame;
+import UI.view.main_frame.Perfil;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import UI.view.ventana_principal.Perfil;
 
 public class ListenerPerfil implements ActionListener {
     private MainFrame mainFrame;

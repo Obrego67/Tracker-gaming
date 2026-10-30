@@ -1,4 +1,4 @@
-package UI.view.ventana_principal;
+package UI.view.main_frame;
 
 import UI.view.barra_superior.BotonPerfil;
 import UI.view.barra_superior.BotonesMenu;
@@ -24,7 +24,7 @@ public class BarraSuperior extends JPanel {
     private BotonesMenu botonesMenu;
     private BotonPerfil botonPerfil;
 
-    public BarraSuperior(c_listnersBotons gestor) {
+    public  BarraSuperior(c_listnersBotons gestor) {
         // Configurem aquest propi JPanel
         setLayout(new BorderLayout());
         setPreferredSize(TOP_BAR_SIZE);

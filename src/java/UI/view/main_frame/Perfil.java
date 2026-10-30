@@ -1,4 +1,4 @@
-package UI.view.ventana_principal;
+package UI.view.main_frame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -1,9 +1,9 @@
 package UI.view;
 
 import UI.listeners.c_listnersBotons;
-import UI.view.ventana_principal.BarraSuperior;
-import UI.view.ventana_principal.Perfil;
-import UI.view.ventana_principal.BarraLateral;
+import UI.view.main_frame.BarraLateral;
+import UI.view.main_frame.BarraSuperior;
+import UI.view.main_frame.Perfil;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 
 public class MainFrame extends JFrame {
     /* ----- SECCION DE VARIABLES GLOBAS REUTILIZADAS ----- */
-    private static final Color BACKGROUND_COLOR = new Color(55, 55, 56);
+    private static final Color BACKGROUND_COLOR = new Color(55, 55, 55);
     private final Container ventana_de_contenido = getContentPane();
 
     /* ----- ELEMENTOS DE LA VENTANA ----- */

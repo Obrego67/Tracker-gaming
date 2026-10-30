@@ -3,7 +3,7 @@ package UI.listeners;
 import UI.components.Boton;
 import UI.view.MainFrame;
 import UI.view.barra_superior.BotonesMenu;
-import UI.view.ventana_principal.Perfil;
+import UI.view.main_frame.Perfil;
 
 public final class c_listnersBotons {
 
