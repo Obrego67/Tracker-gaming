@@ -1,15 +1,20 @@
 package UI.listeners;
 
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+
 import UI.components.Boton;
 import UI.view.MainFrame;
 import UI.view.barra_superior.BotonesMenu;
 import UI.view.main_frame.Perfil;
+import UI.view.main_frame.VentanasPrincipales;
 
 public final class c_listnersBotons {
 
-   private final MainFrame MainFrame;
+    private final MainFrame MainFrame;
 
-    public  c_listnersBotons(MainFrame MainFrame) {
+    public c_listnersBotons(MainFrame MainFrame) {
         this.MainFrame = MainFrame;
     }
 
@@ -25,5 +30,10 @@ public final class c_listnersBotons {
 
     public void añadirListenerCerrarPerfil(Boton boton, Perfil perfil) {
         boton.addActionListener(new ListenerBotonCerrarPerfil(perfil));
+    }
+
+    public void añadirListenerNavegacion(ArrayList<JButton> botones, VentanasPrincipales vp) {
+        ListenerMenu lMenu = new ListenerMenu(vp);
+        for(JButton b : botones) {b.addActionListener(lMenu);}
     }
 }

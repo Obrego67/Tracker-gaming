@@ -4,6 +4,7 @@ import UI.listeners.c_listnersBotons;
 import UI.view.main_frame.BarraLateral;
 import UI.view.main_frame.BarraSuperior;
 import UI.view.main_frame.Perfil;
+import UI.view.main_frame.VentanasPrincipales;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,11 +18,13 @@ public class MainFrame extends JFrame {
     private static final Color BACKGROUND_COLOR = new Color(55, 55, 55);
     private final Container ventana_de_contenido = getContentPane();
 
+    c_listnersBotons gestorBotones;
+
     /* ----- ELEMENTOS DE LA VENTANA ----- */
     BarraSuperior barraSuperior;
     BarraLateral barraLateral;
     Perfil perfilUsuari;
-    c_listnersBotons gestorBotones;
+    VentanasPrincipales ventanasPrincipales;
 
     /* ----- CONSTRUCTOR VENTANA ----- */
     public MainFrame() {
@@ -33,8 +36,12 @@ public class MainFrame extends JFrame {
         barraSuperior = crearBarraSuperior();
         ventana_de_contenido.add(barraSuperior, BorderLayout.NORTH);
 
+        ventanasPrincipales = crearVentanasPrincipales();
+        ventana_de_contenido.add(ventanasPrincipales);
+
         barraLateral = crearBarraLateral();
         ventana_de_contenido.add(barraLateral, BorderLayout.WEST);
+        gestorBotones.añadirListenerNavegacion(barraLateral.getBotones(), ventanasPrincipales);
 
         perfilUsuari = crearPerfilUsuari();
     }
@@ -59,8 +66,12 @@ public class MainFrame extends JFrame {
         return new Perfil(this);
     }
 
-    private BarraLateral crearBarraLateral(){
-        return new BarraLateral(gestorBotones);
+    private BarraLateral crearBarraLateral() {
+        return new BarraLateral();
+    }
+
+    private VentanasPrincipales crearVentanasPrincipales() {
+        return new VentanasPrincipales();
     }
 
     public static void main(String[] args) {
